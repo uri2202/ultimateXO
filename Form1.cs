@@ -8,7 +8,7 @@ namespace ultimateXO
 {
     public partial class Form1 : Form
     {
-        string xOro;//the text of the current player thats making the move
+        string xOro="";//the text of the current player thats making the move
         private const int BoardSize = 3;
         private const int numOfBoards = 9;
         private Button[, ,] buttons; // The array of buttons representing the board
