@@ -97,6 +97,7 @@ namespace ultimateXO
             else xOro = "O";
             if (button.Text=="")//checking if the turn can be played
             {
+                
                 button.Text = xOro;
                 game.MakeMove(panelNum, row, col, xTurn);
                 
@@ -105,8 +106,9 @@ namespace ultimateXO
 
             if (game.CheckWin(panelNum,xTurn))//if 0 or X won this board
             {
-                
-                game.MakeMove(-1, row, col, xTurn);
+                int tempRow = panelNum / BoardSize;
+                int tempCol = panelNum % BoardSize;
+                game.MakeMove(-1, tempRow, tempCol, xTurn);
                 if (game.CheckWin(-1, xTurn))
                 {
                     EndGame();
