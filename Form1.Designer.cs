@@ -14,14 +14,14 @@ namespace ultimateXO
         /// </summary>
 
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        
-        
+
+
         protected override void Dispose(bool disposing)
         {
-           
+
             if (disposing && (components != null))
             {
-                
+
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -51,7 +51,7 @@ namespace ultimateXO
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.table8 = new System.Windows.Forms.TableLayoutPanel();
             this.table7 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+
             this.table1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@ namespace ultimateXO
             this.table1.ColumnCount = 2;
             this.table1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table1.Controls.Add(this.label1, 0, 0);
+
             this.table1.Location = new System.Drawing.Point(135, 12);
             this.table1.Name = "table1";
             this.table1.RowCount = 2;
@@ -266,11 +266,7 @@ namespace ultimateXO
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 15);
-            this.label1.TabIndex = 150;
+
             // 
             // Form1
             // 
@@ -314,6 +310,6 @@ namespace ultimateXO
         private TableLayoutPanel tableLayoutPanel14;
         private TableLayoutPanel table8;
         private TableLayoutPanel table7;
-        private Label label1;
+
     }
 }

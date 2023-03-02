@@ -105,6 +105,12 @@ namespace ultimateXO
 
             if (game.CheckWin(panelNum,xTurn))//if 0 or X won this board
             {
+                
+                game.MakeMove(-1, row, col, xTurn);
+                if (game.CheckWin(-1, xTurn))
+                {
+                    EndGame();
+                }
                 BoardWon(panelNum);
             }
             DisableBoards(row, col);
@@ -197,6 +203,14 @@ namespace ultimateXO
             boards[boardNum].ColumnCount= 1;
             boards[boardNum].AutoSize = true;
             boards[boardNum].Controls.Add(overlay,0,0); 
+        }
+        public void EndGame()
+        {
+            
+            MessageBox.Show("Game Over! "+xOro+" Won!!!!!");
+
+           
+            Application.Exit();
         }
 
     }

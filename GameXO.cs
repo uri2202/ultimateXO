@@ -42,14 +42,39 @@ public class GameXO
     }
     public bool MakeMove(int boardNum, int row,int col,bool isX)//returns true if the move was made and legel, false otherwise
     {
-        if (((xBoards[boardNum].GetBoard() + oBoards[boardNum].GetBoard()) & BitBoard.moves[row, col]) != 0) return false;//checks if the move that we want to make hasnt already been made by x or o
-        if (isX)
+        
+        if(boardNum == -1)
         {
-            xBoards[boardNum].MakeMove(row, col);
+            if(((xMainBoard.GetBoard() + oMainBoard.GetBoard()) & BitBoard.moves[row, col]) == 0)
+            {
+                if (isX)
+                {
+                    xMainBoard.MakeMove(row, col);
+
+                }
+                else
+                {
+                    oMainBoard.MakeMove(row, col);
+                }
+            }
+            else
+            {
+                return false;
+            }
+           
         }
-        else
+        else 
         {
-            oBoards[boardNum].MakeMove(row,col);
+            if (((xBoards[boardNum].GetBoard() + oBoards[boardNum].GetBoard()) & BitBoard.moves[row, col]) != 0) return false;//checks if the move that we want to make hasnt already been made by x or o
+            if (isX)
+            {
+                xBoards[boardNum].MakeMove(row, col);
+            }
+            else
+            {
+                oBoards[boardNum].MakeMove(row, col);
+            }
+            
         }
         return true;
 
