@@ -56,10 +56,10 @@ namespace ultimateXO
             table9.RowCount = BoardSize;
             table9.ColumnCount = BoardSize;
             boards[8] = table9;
-            foreach(Control c in table1.Controls)
-            {
-                if (c is Label) table1.Controls.Remove(c);
-            }
+            //foreach(Control c in table1.Controls)
+            //{
+            //    if (c is Label) table1.Controls.Remove(c);
+            //}
 
             for (int boardNum = 0; boardNum < numOfBoards; boardNum++)
             {
