@@ -114,7 +114,11 @@ namespace ultimateXO
                 {
                     EndGame(false);
                 }
-                BoardWon(panelNum);
+                BoardWon(panelNum,true);
+            }
+            else if(game.CheckWin(panelNum, xTurn) == 2)
+            {
+                BoardWon(panelNum,false);
             }
             DisableBoards(row, col);
             xTurn = !xTurn;
@@ -130,18 +134,7 @@ namespace ultimateXO
             {
                 for (int bNum = 0; bNum < numOfBoards; bNum++)
                 {
-                    if (!(game.CheckWin(panelNum, true) ==1 || game.CheckWin(panelNum, false) == 1))
-                    {
-                        for (int iRow = 0; iRow < BoardSize; iRow++)
-                        {
-                            for (int iCol = 0; iCol < BoardSize; iCol++)
-                            {
-                                buttons[bNum, iRow, iCol].Enabled = false;
-                                buttons[bNum, iRow, iCol].BackColor = Color.White;
-                            }
-                        }
-                    }
-                    else
+                    if (!(game.CheckWin(bNum, true) == 1 || game.CheckWin(bNum, false) == 1))
                     {
                         for (int iRow = 0; iRow < BoardSize; iRow++)
                         {
@@ -152,6 +145,17 @@ namespace ultimateXO
                             }
                         }
                     }
+                    //else
+                    //{
+                    //    for (int iRow = 0; iRow < BoardSize; iRow++)
+                    //    {
+                    //        for (int iCol = 0; iCol < BoardSize; iCol++)
+                    //        {
+                    //            buttons[bNum, iRow, iCol].Enabled = true;
+                    //            buttons[bNum, iRow, iCol].BackColor = Color.LightBlue;
+                    //        }
+                    //    }
+                    //}
                 }
             }
             else
@@ -184,11 +188,12 @@ namespace ultimateXO
             }
            
         }
-        public void BoardWon(int boardNum)
+        public void BoardWon(int boardNum,bool didWin)
         {
             
             Label overlay = new Label();
-            overlay.Text = xOro;
+            if (didWin) overlay.Text = xOro;
+            else overlay.Text = "-";
             overlay.Font = new Font(overlay.Font.FontFamily, 80);
             overlay.Width = boards[boardNum].Width;
             overlay.Height = boards[boardNum].Height;
