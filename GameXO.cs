@@ -14,16 +14,14 @@ public class GameXO
     private BitBoard[] xBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard()};
     private BitBoard[] oBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard() };
     private ushort fullBoard = 0b0111111111;
+    private BitBoard mainDrawBoard = new BitBoard();//we need a board to keep track of the draws so we can detect a tie
     
 
     public int CheckWin(int boardNum,bool isX)//0 - nothing 1 - win 2 - draw
     {
         
-        if(boardNum == -1)
-        {
-            if (xMainBoard.GetBoard() + oMainBoard.GetBoard() == fullBoard) return 2;//check for draw
-        }
-        else if (oBoards[boardNum].GetBoard() + xBoards[boardNum].GetBoard() == fullBoard) return 2;
+        
+        
         if (isX) {
             if (boardNum == -1)//if its the main board
             {
@@ -44,13 +42,22 @@ public class GameXO
             }
             else if (oBoards[boardNum].Won()) return 1;
         }
+        if (boardNum == -1)
+        {
+            if (xMainBoard.GetBoard() + oMainBoard.GetBoard() + mainDrawBoard.GetBoard() == fullBoard) return 2;//check for draw
+        }
+        else if (oBoards[boardNum].GetBoard() + xBoards[boardNum].GetBoard() == fullBoard) return 2;
         return 0;
         
     }
     public bool MakeMove(int boardNum, int row,int col,bool isX)//returns true if the move was made and legel, false otherwise
     {
-        
-        if(boardNum == -1)
+        if (boardNum == -2)
+        {
+            mainDrawBoard.MakeMove(row, col);//if we need to update draw board
+            return true;
+        }
+        if(boardNum == -1)//if main board
         {
             if(((xMainBoard.GetBoard() + oMainBoard.GetBoard()) & BitBoard.moves[row, col]) == 0)
             {

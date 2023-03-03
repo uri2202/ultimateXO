@@ -99,12 +99,12 @@ namespace ultimateXO
                 game.MakeMove(panelNum, row, col, xTurn);
                 
             }
-           
+            int tempRow = panelNum / BoardSize;
+            int tempCol = panelNum % BoardSize;
 
             if (game.CheckWin(panelNum, xTurn) == 1)//if 0 or X won this board
             {
-                int tempRow = panelNum / BoardSize;
-                int tempCol = panelNum % BoardSize;
+               
                 game.MakeMove(-1, tempRow, tempCol, xTurn);
                 if (game.CheckWin(-1, xTurn)==1)
                 {
@@ -118,6 +118,7 @@ namespace ultimateXO
             }
             else if(game.CheckWin(panelNum, xTurn) == 2)
             {
+                game.MakeMove(-2,tempRow, tempCol, xTurn);
                 BoardWon(panelNum,false);
             }
             DisableBoards(row, col);
@@ -130,11 +131,11 @@ namespace ultimateXO
         public void DisableBoards(int row,int col) //this function disables the buttons based on the move that was made
         {
             int panelNum = row*BoardSize + col;//this gets me the correct index in the array of panels
-            if(game.CheckWin(panelNum,true)==1|| game.CheckWin(panelNum, false) == 1)
+            if(game.CheckWin(panelNum,true)==1|| game.CheckWin(panelNum, false) == 1|| game.CheckWin(panelNum, true) == 2 || game.CheckWin(panelNum, false) == 2)
             {
                 for (int bNum = 0; bNum < numOfBoards; bNum++)
                 {
-                    if (!(game.CheckWin(bNum, true) == 1 || game.CheckWin(bNum, false) == 1))
+                    if (!(game.CheckWin(bNum, true) == 1 || game.CheckWin(bNum, false) == 1|| game.CheckWin(bNum, true) == 2 || game.CheckWin(bNum, false) == 2))
                     {
                         for (int iRow = 0; iRow < BoardSize; iRow++)
                         {
