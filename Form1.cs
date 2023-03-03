@@ -145,17 +145,7 @@ namespace ultimateXO
                             }
                         }
                     }
-                    //else
-                    //{
-                    //    for (int iRow = 0; iRow < BoardSize; iRow++)
-                    //    {
-                    //        for (int iCol = 0; iCol < BoardSize; iCol++)
-                    //        {
-                    //            buttons[bNum, iRow, iCol].Enabled = true;
-                    //            buttons[bNum, iRow, iCol].BackColor = Color.LightBlue;
-                    //        }
-                    //    }
-                    //}
+                
                 }
             }
             else
