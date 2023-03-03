@@ -101,14 +101,18 @@ namespace ultimateXO
             }
            
 
-            if (game.CheckWin(panelNum,xTurn))//if 0 or X won this board
+            if (game.CheckWin(panelNum, xTurn) == 1)//if 0 or X won this board
             {
                 int tempRow = panelNum / BoardSize;
                 int tempCol = panelNum % BoardSize;
                 game.MakeMove(-1, tempRow, tempCol, xTurn);
-                if (game.CheckWin(-1, xTurn))
+                if (game.CheckWin(-1, xTurn)==1)
                 {
-                    EndGame();
+                    EndGame(true);
+                }
+                else if(game.CheckWin(-1, xTurn) == 2)
+                {
+                    EndGame(false);
                 }
                 BoardWon(panelNum);
             }
@@ -122,11 +126,11 @@ namespace ultimateXO
         public void DisableBoards(int row,int col) //this function disables the buttons based on the move that was made
         {
             int panelNum = row*BoardSize + col;//this gets me the correct index in the array of panels
-            if(game.CheckWin(panelNum,true)|| game.CheckWin(panelNum, false))
+            if(game.CheckWin(panelNum,true)==1|| game.CheckWin(panelNum, false) == 1)
             {
                 for (int bNum = 0; bNum < numOfBoards; bNum++)
                 {
-                    if (!(game.CheckWin(panelNum, true) || game.CheckWin(panelNum, false)))
+                    if (!(game.CheckWin(panelNum, true) ==1 || game.CheckWin(panelNum, false) == 1))
                     {
                         for (int iRow = 0; iRow < BoardSize; iRow++)
                         {
@@ -203,13 +207,18 @@ namespace ultimateXO
             boards[boardNum].AutoSize = true;
             boards[boardNum].Controls.Add(overlay,0,0); 
         }
-        public void EndGame()
+        public void EndGame(bool isWin)
         {
+            if(isWin) {
+                MessageBox.Show("Game Over! " + xOro + " Won!!!!!");
+                Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show("Game Over! Draw!!!!" );
+                Application.Exit();
+            }
             
-            MessageBox.Show("Game Over! "+xOro+" Won!!!!!");
-
-           
-            Application.Exit();
         }
 
     }
