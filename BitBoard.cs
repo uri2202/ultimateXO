@@ -31,7 +31,7 @@ public class BitBoard
     {
         
         
-        board += moves[col, row];
+        board += moves[row, col];
         
     }
     public bool Won()
