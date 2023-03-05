@@ -92,13 +92,14 @@ namespace ultimateXO
            
             if (xTurn) xOro = "X";
             else xOro = "O";
-            if (button.Text=="")//checking if the turn can be played
+            if (button.Text == "")//checking if the turn can be played
             {
-                
+
                 button.Text = xOro;
                 game.MakeMove(panelNum, row, col, xTurn);
-                
+
             }
+            else return;
             int tempRow = panelNum / BoardSize;
             int tempCol = panelNum % BoardSize;
 
@@ -217,5 +218,6 @@ namespace ultimateXO
             
         }
 
+        
     }
 }
