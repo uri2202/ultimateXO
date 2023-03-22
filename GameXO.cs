@@ -14,7 +14,7 @@ public class GameXO
     private BitBoard[] xBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard()};
     private BitBoard[] oBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard() };
     private ushort fullBoard = 0b0111111111;
-    private BitBoard mainDrawBoard = new BitBoard();//we need a board to keep track of the draws so we can detect a tie
+    private BitBoard mainDrawBoard = new BitBoard();//we need a board to keep track of the draws so we can detect a tie, the bits that are on are small bords that ended on a tie
     
 
     public int CheckWin(int boardNum,bool isX)//0 - nothing 1 - win 2 - draw

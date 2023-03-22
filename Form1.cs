@@ -60,6 +60,8 @@ namespace ultimateXO
 
             for (int boardNum = 0; boardNum < numOfBoards; boardNum++)
             {
+                
+
                 for (int row = 0; row < BoardSize; row++)
                 {
                     for (int col = 0; col < BoardSize; col++)
@@ -75,6 +77,7 @@ namespace ultimateXO
                         buttons[boardNum,row, col] = button;
                     }
                 }
+               // boards[boardNum].CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             }
            
         }
