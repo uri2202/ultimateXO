@@ -103,7 +103,7 @@ namespace ultimateXO
 
             }
             else return;
-            int tempRow = panelNum / BoardSize;
+            int tempRow = panelNum / BoardSize;//get the row and col of the panel number
             int tempCol = panelNum % BoardSize;
 
             if (game.CheckWin(panelNum, xTurn) == 1)//if 0 or X won this board
