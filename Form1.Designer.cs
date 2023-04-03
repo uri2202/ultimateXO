@@ -51,6 +51,7 @@ namespace ultimateXO
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.table8 = new System.Windows.Forms.TableLayoutPanel();
             this.table7 = new System.Windows.Forms.TableLayoutPanel();
+            this.aiCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // table1
@@ -58,13 +59,12 @@ namespace ultimateXO
             this.table1.ColumnCount = 2;
             this.table1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table1.Location = new System.Drawing.Point(154, 16);
-            this.table1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table1.Location = new System.Drawing.Point(135, 12);
             this.table1.Name = "table1";
             this.table1.RowCount = 2;
             this.table1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table1.Size = new System.Drawing.Size(171, 200);
+            this.table1.Size = new System.Drawing.Size(150, 150);
             this.table1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -72,8 +72,7 @@ namespace ultimateXO
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(432, 40);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(378, 30);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.68153F));
@@ -99,8 +98,7 @@ namespace ultimateXO
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(733, 40);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(641, 30);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.68153F));
@@ -113,13 +111,12 @@ namespace ultimateXO
             this.table2.ColumnCount = 2;
             this.table2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table2.Location = new System.Drawing.Point(390, 16);
-            this.table2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table2.Location = new System.Drawing.Point(341, 12);
             this.table2.Name = "table2";
             this.table2.RowCount = 2;
             this.table2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table2.Size = new System.Drawing.Size(171, 200);
+            this.table2.Size = new System.Drawing.Size(150, 150);
             this.table2.TabIndex = 3;
             // 
             // tableLayoutPanel6
@@ -140,13 +137,12 @@ namespace ultimateXO
             this.table3.ColumnCount = 2;
             this.table3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table3.Location = new System.Drawing.Point(624, 16);
-            this.table3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table3.Location = new System.Drawing.Point(546, 12);
             this.table3.Name = "table3";
             this.table3.RowCount = 2;
             this.table3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table3.Size = new System.Drawing.Size(171, 200);
+            this.table3.Size = new System.Drawing.Size(150, 150);
             this.table3.TabIndex = 4;
             // 
             // table9
@@ -154,13 +150,12 @@ namespace ultimateXO
             this.table9.ColumnCount = 2;
             this.table9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table9.Location = new System.Drawing.Point(624, 497);
-            this.table9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table9.Location = new System.Drawing.Point(546, 373);
             this.table9.Name = "table9";
             this.table9.RowCount = 2;
             this.table9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table9.Size = new System.Drawing.Size(171, 200);
+            this.table9.Size = new System.Drawing.Size(150, 150);
             this.table9.TabIndex = 5;
             // 
             // tableLayoutPanel9
@@ -181,13 +176,12 @@ namespace ultimateXO
             this.table6.ColumnCount = 2;
             this.table6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table6.Location = new System.Drawing.Point(624, 255);
-            this.table6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table6.Location = new System.Drawing.Point(546, 191);
             this.table6.Name = "table6";
             this.table6.RowCount = 2;
             this.table6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table6.Size = new System.Drawing.Size(171, 200);
+            this.table6.Size = new System.Drawing.Size(150, 150);
             this.table6.TabIndex = 6;
             // 
             // tableLayoutPanel11
@@ -208,13 +202,12 @@ namespace ultimateXO
             this.table5.ColumnCount = 2;
             this.table5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table5.Location = new System.Drawing.Point(390, 255);
-            this.table5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table5.Location = new System.Drawing.Point(341, 191);
             this.table5.Name = "table5";
             this.table5.RowCount = 2;
             this.table5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table5.Size = new System.Drawing.Size(171, 200);
+            this.table5.Size = new System.Drawing.Size(150, 150);
             this.table5.TabIndex = 7;
             // 
             // table4
@@ -222,13 +215,12 @@ namespace ultimateXO
             this.table4.ColumnCount = 2;
             this.table4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table4.Location = new System.Drawing.Point(154, 255);
-            this.table4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table4.Location = new System.Drawing.Point(135, 191);
             this.table4.Name = "table4";
             this.table4.RowCount = 2;
             this.table4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table4.Size = new System.Drawing.Size(171, 200);
+            this.table4.Size = new System.Drawing.Size(150, 150);
             this.table4.TabIndex = 8;
             // 
             // tableLayoutPanel14
@@ -249,13 +241,12 @@ namespace ultimateXO
             this.table8.ColumnCount = 2;
             this.table8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table8.Location = new System.Drawing.Point(390, 497);
-            this.table8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table8.Location = new System.Drawing.Point(341, 373);
             this.table8.Name = "table8";
             this.table8.RowCount = 2;
             this.table8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table8.Size = new System.Drawing.Size(171, 200);
+            this.table8.Size = new System.Drawing.Size(150, 150);
             this.table8.TabIndex = 9;
             // 
             // table7
@@ -263,20 +254,34 @@ namespace ultimateXO
             this.table7.ColumnCount = 2;
             this.table7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table7.Location = new System.Drawing.Point(154, 497);
-            this.table7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.table7.Location = new System.Drawing.Point(135, 373);
             this.table7.Name = "table7";
             this.table7.RowCount = 2;
             this.table7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.table7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table7.Size = new System.Drawing.Size(171, 200);
+            this.table7.Size = new System.Drawing.Size(150, 150);
             this.table7.TabIndex = 10;
+            // 
+            // aiCheckBox
+            // 
+            this.aiCheckBox.AutoSize = true;
+            this.aiCheckBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.aiCheckBox.Location = new System.Drawing.Point(733, 30);
+            this.aiCheckBox.Margin = new System.Windows.Forms.Padding(5);
+            this.aiCheckBox.Name = "aiCheckBox";
+            this.aiCheckBox.Size = new System.Drawing.Size(113, 19);
+            this.aiCheckBox.TabIndex = 11;
+            this.aiCheckBox.Text = "computer player";
+            this.aiCheckBox.UseVisualStyleBackColor = true;
+            this.aiCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 713);
+            this.BackColor = System.Drawing.SystemColors.Desktop;
+            this.ClientSize = new System.Drawing.Size(860, 535);
+            this.Controls.Add(this.aiCheckBox);
             this.Controls.Add(this.table7);
             this.Controls.Add(this.table8);
             this.Controls.Add(this.table4);
@@ -288,10 +293,10 @@ namespace ultimateXO
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.table1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -313,5 +318,6 @@ namespace ultimateXO
         private TableLayoutPanel tableLayoutPanel14;
         private TableLayoutPanel table8;
         private TableLayoutPanel table7;
+        private CheckBox aiCheckBox;
     }
 }

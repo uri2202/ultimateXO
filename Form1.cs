@@ -15,6 +15,8 @@ namespace ultimateXO
         TableLayoutPanel[] boards;
         private bool xTurn = true;
         private GameXO game = new GameXO();
+        private bool aiPlayer = false;
+        CheckBox ai; 
 
         public Form1()
         {
@@ -56,7 +58,8 @@ namespace ultimateXO
             table9.RowCount = BoardSize;
             table9.ColumnCount = BoardSize;
             boards[8] = table9;
-            
+           ai = aiCheckBox;
+           ai.Click += new EventHandler(aiOn);
 
             for (int boardNum = 0; boardNum < numOfBoards; boardNum++)
             {
@@ -95,6 +98,7 @@ namespace ultimateXO
            
             if (xTurn) xOro = "X";
             else xOro = "O";
+            if (aiPlayer) ;
             if (button.Text == "")//checking if the turn can be played
             {
 
@@ -130,6 +134,12 @@ namespace ultimateXO
 
 
 
+
+        }
+        private void aiOn(object sender, EventArgs e)
+        {
+            aiPlayer = true;
+            ai.Enabled = false;
 
         }
         public void DisableBoards(int row,int col) //this function disables the buttons based on the move that was made
@@ -221,6 +231,9 @@ namespace ultimateXO
             
         }
 
-        
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
