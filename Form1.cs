@@ -17,6 +17,7 @@ namespace ultimateXO
         private GameXO game = new GameXO();
         private bool aiPlayer = false;
         CheckBox ai; 
+        CompPlayer cp = new CompPlayer();
 
         public Form1()
         {
@@ -96,9 +97,27 @@ namespace ultimateXO
             int row = table1.GetRow(button);
             int col = table1.GetColumn(button);
            
+           
+           
+            initializeTurn(button, panel, panelNum, row, col);
+            xTurn = !xTurn;
+
+            if (aiPlayer)
+            {
+                Move move = cp.MakeMove(game, new Move(panelNum, row, col));
+
+
+                initializeTurn(buttons[move.Board, move.Row, move.Col ], boards[panelNum], move.Board, move.Row, move.Col);
+                xTurn = !xTurn;
+            }
+
+
+
+        }
+        public void initializeTurn(Button button,TableLayoutPanel panel, int panelNum, int row, int col)
+        {
             if (xTurn) xOro = "X";
             else xOro = "O";
-            if (aiPlayer) ;
             if (button.Text == "")//checking if the turn can be played
             {
 
@@ -112,29 +131,24 @@ namespace ultimateXO
 
             if (game.CheckWin(panelNum, xTurn) == 1)//if 0 or X won this board
             {
-               
+
                 game.MakeMove(-1, tempRow, tempCol, xTurn);
-                if (game.CheckWin(-1, xTurn)==1)
+                if (game.CheckWin(-1, xTurn) == 1)
                 {
                     EndGame(true);
                 }
-                else if(game.CheckWin(-1, xTurn) == 2)
+                else if (game.CheckWin(-1, xTurn) == 2)
                 {
                     EndGame(false);
                 }
-                BoardWon(panelNum,true);
+                BoardWon(panelNum, true);
             }
-            else if(game.CheckWin(panelNum, xTurn) == 2)
+            else if (game.CheckWin(panelNum, xTurn) == 2)
             {
-                game.MakeMove(-2,tempRow, tempCol, xTurn);
-                BoardWon(panelNum,false);
+                game.MakeMove(-2, tempRow, tempCol, xTurn);
+                BoardWon(panelNum, false);
             }
             DisableBoards(row, col);
-            xTurn = !xTurn;
-
-
-
-
         }
         private void aiOn(object sender, EventArgs e)
         {

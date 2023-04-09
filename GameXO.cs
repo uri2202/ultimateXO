@@ -93,10 +93,41 @@ public class GameXO
         return true;
 
     }
+
+    public BitBoard XMainBoard
+    {
+        get { return xMainBoard; }
+        set { xMainBoard = value; }
+    }
+
+    public BitBoard OMainBoard
+    {
+        get { return oMainBoard; }
+        set { oMainBoard = value; }
+    }
+
+    public BitBoard MainDrawBoard
+    {
+        get { return mainDrawBoard; }
+        set { mainDrawBoard = value; }
+    }
+    public BitBoard[] XBoards
+    {
+        get { return xBoards; }
+        set { xBoards = value; }
+    }
+
+    public BitBoard[] OBoards
+    {
+        get { return oBoards; }
+        set { oBoards = value; }
+    }
+
+
 }
-    
-        
 
 
-    
+
+
+
 

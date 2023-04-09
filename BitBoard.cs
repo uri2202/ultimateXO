@@ -49,6 +49,26 @@ public class BitBoard
     {
         return board;
     }
+    public bool WasMoveMade(int row,int col)
+    {
+        int squareNum = row * 3 + col;
+
+
+        if ((board & (1 << squareNum)) != 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool WasMoveMadeInd(int squareNum)
+    {
+       
+        if ((board & (1 << squareNum)) != 0)
+        {
+            return true;
+        }
+        return false;
+    }
 
 }
 
