@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,8 @@ class CompPlayer
     public Move MakeMove(GameXO game, Move move)// the ai is always the O player, game is the current game situation, move is the move that was just made by the real player
     {
         Move finalMove = new Move();
+        finalMove.Score = -100000;
+        Move tempMove = new Move();
         //first we need to check in which boards the move can be made
         bool[] legalBoards = new bool[9];//true if the board in the index is legal false otherwise
         Array.Fill(legalBoards, false);
@@ -35,16 +39,24 @@ class CompPlayer
                     {
                         if (!game.XBoards[board].WasMoveMade(row,col)&& !game.OBoards[board].WasMoveMade(row, col))
                         {
-                            finalMove.Row= row;
-                            finalMove.Col= col;
-                            finalMove.Board= board;
-                            return finalMove;
+                           
+                            tempMove.Row= row;
+                            tempMove.Col= col;
+                            tempMove.Board= board;
+                            tempMove.Score = evaluate(tempMove, game);
+                            if(tempMove.Score>finalMove.Score) finalMove = tempMove.Clone() as Move;
                         }
                     }
                 }
             }
         }
-        return null;
+        return finalMove;
+
+    }
+    private int evaluate(Move move,GameXO game)
+    {
+        int finalScore = 0;
+        GameXO tempGame = game.Clone() as GameXO;
 
     }
 }

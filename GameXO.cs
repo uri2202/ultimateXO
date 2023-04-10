@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class GameXO
+public class GameXO : ICloneable
 {
    
     private BitBoard xMainBoard = new BitBoard();
     private BitBoard oMainBoard = new BitBoard();
     private BitBoard[] xBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard()};
     private BitBoard[] oBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard() };
-    private ushort fullBoard = 0b0111111111;
+    private static ushort fullBoard = 0b0111111111;
     private BitBoard mainDrawBoard = new BitBoard();//we need a board to keep track of the draws so we can detect a tie, the bits that are on are small bords that ended on a tie
     
 
@@ -44,11 +44,27 @@ public class GameXO
         }
         if (boardNum == -1)
         {
-            if (xMainBoard.GetBoard() + oMainBoard.GetBoard() + mainDrawBoard.GetBoard() == fullBoard) return 2;//check for draw
+            if (xMainBoard.Board + oMainBoard.Board + mainDrawBoard.Board == fullBoard) return 2;//check for draw
         }
-        else if (oBoards[boardNum].GetBoard() + xBoards[boardNum].GetBoard() == fullBoard) return 2;
+        else if (oBoards[boardNum].Board + xBoards[boardNum].Board == fullBoard) return 2;
         return 0;
         
+    }
+    public object Clone()
+    {
+        var clone = new GameXO();
+
+        // Deep copy of BitBoard objects
+        clone.xMainBoard = this.xMainBoard.Clone() as BitBoard ?? new BitBoard();
+        clone.oMainBoard = this.oMainBoard.Clone() as BitBoard ?? new BitBoard();
+        clone.xBoards = this.xBoards.Select(bb => bb.Clone() as BitBoard ?? new BitBoard()).ToArray();
+        clone.oBoards = this.oBoards.Select(bb => bb.Clone() as BitBoard ?? new BitBoard()).ToArray();
+        clone.mainDrawBoard = this.mainDrawBoard.Clone() as BitBoard ?? new BitBoard();
+
+
+
+
+        return clone;
     }
     public bool MakeMove(int boardNum, int row,int col,bool isX)//returns true if the move was made and legel, false otherwise
     {
@@ -59,7 +75,7 @@ public class GameXO
         }
         if(boardNum == -1)//if main board
         {
-            if(((xMainBoard.GetBoard() + oMainBoard.GetBoard()) & BitBoard.moves[row, col]) == 0)
+            if(((xMainBoard.Board + oMainBoard.Board) & BitBoard.moves[row, col]) == 0)
             {
                 if (isX)
                 {
@@ -79,7 +95,7 @@ public class GameXO
         }
         else 
         {
-            if (((xBoards[boardNum].GetBoard() + oBoards[boardNum].GetBoard()) & BitBoard.moves[row, col]) != 0) return false;//checks if the move that we want to make hasnt already been made by x or o
+            if (((xBoards[boardNum].Board + oBoards[boardNum].Board) & BitBoard.moves[row, col]) != 0) return false;//checks if the move that we want to make hasnt already been made by x or o
             if (isX)
             {
                 xBoards[boardNum].MakeMove(row, col);

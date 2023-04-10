@@ -110,6 +110,10 @@ namespace ultimateXO
                 initializeTurn(buttons[move.Board, move.Row, move.Col ], boards[panelNum], move.Board, move.Row, move.Col);
                 xTurn = !xTurn;
             }
+            else
+            {
+                ai.Enabled = false;
+            }
 
 
 
@@ -245,9 +249,6 @@ namespace ultimateXO
             
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

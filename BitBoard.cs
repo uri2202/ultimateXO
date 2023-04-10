@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System;
+using static System.Formats.Asn1.AsnWriter;
 
-public class BitBoard
+public class BitBoard : ICloneable
 {
     private ushort board = 0;
     
@@ -34,6 +35,13 @@ public class BitBoard
         board += moves[row, col];
         
     }
+
+    public object Clone()
+    {
+        BitBoard clone = new BitBoard();
+        clone.board = this.board;
+        return clone;
+    }
     public bool Won()
     {
         for (int i = 0; i < wins.Length; i++)
@@ -45,9 +53,14 @@ public class BitBoard
         }
         return false;
     }
-    public ushort GetBoard()
+    //public ushort GetBoard()
+    //{
+    //    return board;
+    //}
+    public ushort Board
     {
-        return board;
+        get { return board; }
+        set { board = value; }
     }
     public bool WasMoveMade(int row,int col)
     {

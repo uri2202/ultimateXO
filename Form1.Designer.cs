@@ -273,7 +273,7 @@ namespace ultimateXO
             this.aiCheckBox.TabIndex = 11;
             this.aiCheckBox.Text = "computer player";
             this.aiCheckBox.UseVisualStyleBackColor = true;
-            this.aiCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+           // this.aiCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
