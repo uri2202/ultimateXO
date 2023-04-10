@@ -3,12 +3,17 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 
 class CompPlayer
 {
+    private const int gameWin = 10000;
+    private const int boardWin = 5;
+    private const int centerBoard = 11;
+    private const int cornerBoard = 8;
     public CompPlayer()
     {
 
@@ -43,7 +48,7 @@ class CompPlayer
                             tempMove.Row= row;
                             tempMove.Col= col;
                             tempMove.Board= board;
-                            tempMove.Score = evaluate(tempMove, game);
+                            tempMove.Score = Evaluate(tempMove, game, false );
                             if(tempMove.Score>finalMove.Score) finalMove = tempMove.Clone() as Move;
                         }
                     }
@@ -53,11 +58,63 @@ class CompPlayer
         return finalMove;
 
     }
-    private int evaluate(Move move,GameXO game)
+    private int Evaluate(Move move,GameXO game, bool isX)
     {
         int finalScore = 0;
         GameXO tempGame = game.Clone() as GameXO;
+        //here we make sure we make the move for the correct player and if the move led to a small board win we make sure to add it to the main boards
+        if (isX)
+        {
+            tempGame.XBoards[move.Board].MakeMove(move.Row, move.Col);
+            if (tempGame.XBoards[move.Board].Won())
+            {
+                tempGame.XMainBoard.MakeMoveInd(move.Board);
+            }
+        }
 
+       else
+        {
+            tempGame.OBoards[move.Board].MakeMove(move.Row,move.Col);
+            if (tempGame.OBoards[move.Board].Won())
+            {
+                tempGame.OMainBoard.MakeMoveInd(move.Board);
+            }
+        }
+        finalScore += GameWon(tempGame, isX);
+        finalScore += BoardWon(tempGame, isX);
+
+
+        return finalScore;
+    }
+    private int GameWon(GameXO game,bool isX)//heuristic that gives score based on winning the whole game
+    {
+        int score = 0;
+        if (game.OMainBoard.Won()) score += gameWin;
+        else if (game.XMainBoard.Won()) score -= gameWin;
+        if (isX) score *= -1;
+        return score;
+        
+    }
+    private int BoardWon(GameXO game,bool isX)//heurstic that gives score based on small board wins
+    {
+        int score = 0;
+        for (int i = 0; i < 9; i++)
+        {
+            if (game.OBoards[i].Won())
+            {
+                if (i == 4) score += centerBoard;
+                else if (1 == 0 || i == 2 || i == 8 || i == 8) score += cornerBoard;
+                else score += boardWin;
+            }
+            else if (game.XBoards[i].Won())
+            {
+                if (i == 4) score -= centerBoard;
+                else if (1 == 0 || i == 2 || i == 8 || i == 8) score -= cornerBoard;
+                else score -= boardWin;
+            }
+        }
+        if(isX) score *= -1;
+        return score;
     }
 }
 

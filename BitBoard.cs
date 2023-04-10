@@ -35,6 +35,14 @@ public class BitBoard : ICloneable
         board += moves[row, col];
         
     }
+    public void MakeMoveInd(int square)
+    {
+
+        int row = square / 3;//get the row and col of the panel number
+        int col = square % 3;
+        board += moves[row, col];
+
+    }
 
     public object Clone()
     {

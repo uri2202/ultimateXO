@@ -55,14 +55,13 @@ public class GameXO : ICloneable
         var clone = new GameXO();
 
         // Deep copy of BitBoard objects
-        clone.xMainBoard = this.xMainBoard.Clone() as BitBoard ?? new BitBoard();
-        clone.oMainBoard = this.oMainBoard.Clone() as BitBoard ?? new BitBoard();
-        clone.xBoards = this.xBoards.Select(bb => bb.Clone() as BitBoard ?? new BitBoard()).ToArray();
-        clone.oBoards = this.oBoards.Select(bb => bb.Clone() as BitBoard ?? new BitBoard()).ToArray();
-        clone.mainDrawBoard = this.mainDrawBoard.Clone() as BitBoard ?? new BitBoard();
+        clone.xMainBoard = this.xMainBoard.Clone() as BitBoard;
+        clone.oMainBoard = this.oMainBoard.Clone() as BitBoard;
+        clone.xBoards = this.xBoards.Select(bb => bb.Clone() as BitBoard).ToArray();
+        clone.oBoards = this.oBoards.Select(bb => bb.Clone() as BitBoard).ToArray();
+        clone.mainDrawBoard = this.mainDrawBoard.Clone() as BitBoard;
 
-
-
+       
 
         return clone;
     }
