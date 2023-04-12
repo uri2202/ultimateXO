@@ -117,5 +117,9 @@ class CompPlayer
         if(isX) score *= -1;
         return score;
     }
+    private int CenterSquare(GameXO game, bool isX)
+    {
+        int score = 0;
+    }
 }
 
