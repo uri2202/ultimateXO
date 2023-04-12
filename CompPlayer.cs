@@ -12,8 +12,9 @@ class CompPlayer
 {
     private const int gameWin = 10000;
     private const int boardWin = 5;
-    private const int centerBoard = 11;
-    private const int cornerBoard = 8;
+    private const int centerBoardWin = 11;
+    private const int cornerBoardWin = 8;
+    private const int centerSquare = 2;
     public CompPlayer()
     {
 
@@ -102,14 +103,14 @@ class CompPlayer
         {
             if (game.OBoards[i].Won())
             {
-                if (i == 4) score += centerBoard;
-                else if (1 == 0 || i == 2 || i == 8 || i == 8) score += cornerBoard;
+                if (i == 4) score += centerBoardWin;
+                else if (1 == 0 || i == 2 || i == 8 || i == 8) score += cornerBoardWin;
                 else score += boardWin;
             }
             else if (game.XBoards[i].Won())
             {
-                if (i == 4) score -= centerBoard;
-                else if (1 == 0 || i == 2 || i == 8 || i == 8) score -= cornerBoard;
+                if (i == 4) score -= centerBoardWin;
+                else if (1 == 0 || i == 2 || i == 8 || i == 8) score -= cornerBoardWin;
                 else score -= boardWin;
             }
         }
