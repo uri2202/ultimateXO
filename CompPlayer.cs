@@ -83,6 +83,7 @@ class CompPlayer
         }
         finalScore += GameWon(tempGame, isX);
         finalScore += BoardWon(tempGame, isX);
+        finalScore += CenterSquare(tempGame, isX);
 
 
         return finalScore;
@@ -119,7 +120,28 @@ class CompPlayer
     }
     private int CenterSquare(GameXO game, bool isX)
     {
+        ushort centerBit = BitBoard.moves[1, 1];//the bit that represents the center square in the board
         int score = 0;
+        for (int i = 0; i < 9; i++)
+        {
+            if ((game.OBoards[i].Board & centerBit) != 0)
+            {
+                score += centerSquare;
+            }
+            if ((game.XBoards[i].Board & centerBit) != 0)
+            {
+                score -= centerSquare;
+            }
+
+        }
+        if(isX)score*= -1;
+        return score;
+    }
+    private int CenterBoardSquare(GameXO game, bool isX)
+    {
+        int score = 0;
+        return 7;
+
     }
 }
 

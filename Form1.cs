@@ -96,7 +96,7 @@ namespace ultimateXO
             int panelNum = Array.IndexOf(boards, panel);//getting the row,col,which panel the button is on
             int row = table1.GetRow(button);
             int col = table1.GetColumn(button);
-           
+           // button.Enabled = false;
            
            
             initializeTurn(button, panel, panelNum, row, col);
@@ -120,6 +120,7 @@ namespace ultimateXO
         }
         public void initializeTurn(Button button,TableLayoutPanel panel, int panelNum, int row, int col)
         {
+            
             if (xTurn) xOro = "X";
             else xOro = "O";
             if (button.Text == "")//checking if the turn can be played
@@ -173,7 +174,8 @@ namespace ultimateXO
                         {
                             for (int iCol = 0; iCol < BoardSize; iCol++)
                             {
-                                buttons[bNum, iRow, iCol].Enabled = true;
+                                if (buttons[bNum, iRow, iCol].Text=="") buttons[bNum, iRow, iCol].Enabled = true;
+
                                 buttons[bNum, iRow, iCol].BackColor = Color.LightBlue;
                             }
                         }
@@ -202,7 +204,7 @@ namespace ultimateXO
                         {
                             for (int iCol = 0; iCol < BoardSize; iCol++)
                             {
-                                buttons[bNum, iRow, iCol].Enabled = true;
+                                if (buttons[bNum, iRow, iCol].Text == "") buttons[bNum, iRow, iCol].Enabled = true;
                                 buttons[bNum, iRow, iCol].BackColor = Color.LightBlue;
                             }
                         }
