@@ -17,7 +17,7 @@ public class BitBoard : ICloneable
     { 0b1000000, 0b10000000, 0b100000000 }
 };
 
-    private static ushort[] wins = {
+    public static ushort[] wins = {
     (ushort)(moves[0, 0] + moves[0, 1] + moves[0, 2]),
     (ushort)(moves[1, 0] + moves[1, 1] + moves[1, 2]),
     (ushort)(moves[2, 0] + moves[2, 1] + moves[2, 2]),

@@ -86,8 +86,7 @@ class CompPlayer
         finalScore += GameWon(tempGame, isX);
         finalScore += BoardWon(tempGame, isX);
         finalScore += CenterSquare(tempGame, isX);
-        finalScore += centerBoardSquare(tempGame, isX);
-
+        finalScore += CenterBoardSquare(tempGame, isX);
 
         return finalScore;
     }
@@ -144,25 +143,43 @@ class CompPlayer
     {
         int score = 0;
         ushort tempBoard = game.OBoards[4].Board;
-        int count = 0;
-        while (tempBoard > 0)
-        {
-            count += tempBoard & 1;
-
-            tempBoard >>= 1;
-        }
+        int count = BitCount(tempBoard);
+        
         score += count * centerBoardSquare;
          tempBoard = game.XBoards[4].Board;
-        count = 0;
-        while (tempBoard > 0)
-        {
-            count += tempBoard & 1;
-
-            tempBoard >>= 1;
-        }
+        count = BitCount(tempBoard);
+        
         score-= count * centerBoardSquare;
         if(isX) score*= -1;
         return score;
+    }
+    private int BitCount(ushort num)
+    {
+        int count = 0;
+        while(num>0)
+        {
+            count += num & 1;
+            num >>= 1;
+        }
+        return count;
+    }
+
+    private bool CanWinInOne(BitBoard winBoard,BitBoard secondBoard)//winBoard is the board that we want to check if it can win in 1 move and the secondBoard is the second one, both of then could be x or o
+    {
+        bool canWin = false;
+        for (int i = 0; i < BitBoard.wins.Length&&!canWin; i++)
+        {
+            ushort emptySquares = (ushort)~(winBoard.Board|secondBoard.Board);
+            if (BitCount((ushort)(winBoard.Board & BitBoard.wins[i])) == 2)//we need to check that the player has alredy placed 2 moves that can lead to a win
+            {
+                ushort emptySquareMask = (ushort)(BitBoard.wins[i]&emptySquares);//this has the empty square that is a part of this win pattern
+                if ( emptySquareMask != 0)//we need to check that there is a empty sqaure this a part of the win pattern
+                {
+                    canWin = true;
+                }
+            }
+        }
+        return canWin;
     }
 }
 
