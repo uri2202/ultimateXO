@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -15,6 +16,7 @@ class CompPlayer
     private const int centerBoardWin = 11;
     private const int cornerBoardWin = 8;
     private const int centerSquare = 2;
+    private const int centerBoardSquare = 2;
     public CompPlayer()
     {
 
@@ -84,6 +86,7 @@ class CompPlayer
         finalScore += GameWon(tempGame, isX);
         finalScore += BoardWon(tempGame, isX);
         finalScore += CenterSquare(tempGame, isX);
+        finalScore += centerBoardSquare(tempGame, isX);
 
 
         return finalScore;
@@ -140,8 +143,26 @@ class CompPlayer
     private int CenterBoardSquare(GameXO game, bool isX)
     {
         int score = 0;
-        return 7;
+        ushort tempBoard = game.OBoards[4].Board;
+        int count = 0;
+        while (tempBoard > 0)
+        {
+            count += tempBoard & 1;
 
+            tempBoard >>= 1;
+        }
+        score += count * centerBoardSquare;
+         tempBoard = game.XBoards[4].Board;
+        count = 0;
+        while (tempBoard > 0)
+        {
+            count += tempBoard & 1;
+
+            tempBoard >>= 1;
+        }
+        score-= count * centerBoardSquare;
+        if(isX) score*= -1;
+        return score;
     }
 }
 
