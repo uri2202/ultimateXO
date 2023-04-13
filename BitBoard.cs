@@ -27,7 +27,15 @@ public class BitBoard : ICloneable
     (ushort)(moves[0, 0] + moves[1, 1] + moves[2, 2]),
     (ushort)(moves[0, 2] + moves[1, 1] + moves[2, 0])
 };
-    
+    public BitBoard(ushort board)
+    {
+        this.board = board;
+    }
+    public BitBoard()
+    {
+        
+    }
+
     public void MakeMove(int row, int col)
     {
         

@@ -12,11 +12,15 @@ using System.Threading.Tasks;
 class CompPlayer
 {
     private const int gameWin = 10000;
-    private const int boardWin = 5;
-    private const int centerBoardWin = 11;
-    private const int cornerBoardWin = 8;
+    private const int boardWin = 7;
+    private const int centerBoardWin = 12;
+    private const int cornerBoardWin = 9;
     private const int centerSquare = 2;
     private const int centerBoardSquare = 2;
+    private const int twoBoardInARow = 4;
+    private const int twoSquaresInARow = 3;
+    private const int anyBoardMove = -3;
+    private const int moveToWinBoard = -5;
     public CompPlayer()
     {
 
@@ -87,6 +91,12 @@ class CompPlayer
         finalScore += BoardWon(tempGame, isX);
         finalScore += CenterSquare(tempGame, isX);
         finalScore += CenterBoardSquare(tempGame, isX);
+        finalScore += BoardsInARow(tempGame, isX);
+        finalScore += SquaresInARow(tempGame, isX);
+        finalScore += MoveToAnyBoard(tempGame, move);
+        finalScore += MoveToBoardWin(tempGame, move, isX);
+
+
 
         return finalScore;
     }
@@ -164,12 +174,12 @@ class CompPlayer
         return count;
     }
 
-    private bool CanWinInOne(BitBoard winBoard,BitBoard secondBoard)//winBoard is the board that we want to check if it can win in 1 move and the secondBoard is the second one, both of then could be x or o
+    private bool CanWinInOne(BitBoard winBoard,BitBoard secondBoard,BitBoard drawBoard)//winBoard is the board that we want to check if it can win in 1 move and the secondBoard is the second one, both of then could be x or o
     {
         bool canWin = false;
         for (int i = 0; i < BitBoard.wins.Length&&!canWin; i++)
         {
-            ushort emptySquares = (ushort)~(winBoard.Board|secondBoard.Board);
+            ushort emptySquares = (ushort)~(winBoard.Board|secondBoard.Board|drawBoard.Board);
             if (BitCount((ushort)(winBoard.Board & BitBoard.wins[i])) == 2)//we need to check that the player has alredy placed 2 moves that can lead to a win
             {
                 ushort emptySquareMask = (ushort)(BitBoard.wins[i]&emptySquares);//this has the empty square that is a part of this win pattern
@@ -180,6 +190,85 @@ class CompPlayer
             }
         }
         return canWin;
+    }
+    private int BoardsInARow(GameXO game, bool isX)//this heuristic is for two boards wins that are in a row/column/diaginal that can lead to a game win
+    {
+        int score = 0;
+        if (CanWinInOne(game.OMainBoard, game.XMainBoard,game.MainDrawBoard)) score += twoBoardInARow;
+        if (CanWinInOne(game.XMainBoard, game.OMainBoard,game.MainDrawBoard)) score -= twoBoardInARow;
+        if(isX) score*=-1;
+        return score;
+    }
+    private int SquaresInARow(GameXO game, bool isX)
+    {
+        int score = 0;
+        for (int i = 0; i < 9; i++)
+        {
+            if (CanWinInOne(game.OBoards[i], game.XBoards[i],new BitBoard(0))) score += twoBoardInARow;
+            if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0))) score -= twoBoardInARow;
+        }
+        if (isX) score *= -1;
+        return score;
+    }
+    private int MoveToAnyBoard(GameXO game, Move move)//heuristc that checks if the move sent the enemy to play in any board
+    {
+        ushort fullBoard = (ushort)(game.OMainBoard.Board|game.MainDrawBoard.Board|game.XMainBoard.Board);
+        if ((BitBoard.moves[move.Row, move.Col] & fullBoard) != 0) return anyBoardMove;
+        return 0;
+    }
+    private int MoveToBoardWin(GameXO game, Move move, bool isX)
+    {
+        ushort fullBoard = (ushort)(game.OMainBoard.Board | game.MainDrawBoard.Board | game.XMainBoard.Board);
+        int score = 0;
+        ushort mask = 1;
+        bool canWin = false;
+        if (MoveToAnyBoard(game, move) == anyBoardMove)//if the player can play in any board he wants we need to check all of them
+        {
+            if (isX)
+            {
+                for (int i = 0; i < 9&&!canWin; i++)
+                {
+                    if ((mask & fullBoard) != 0)//this check that the board we are cheking hasnt already won
+                    {
+                        if (CanWinInOne(game.OBoards[i], game.XBoards[i],new BitBoard(0)))
+                        {
+                            score += moveToWinBoard;
+                            canWin = true;
+                        }
+                       
+                    }
+                    mask <<= 1;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 9 && !canWin; i++)
+                {
+                    if ((mask & fullBoard) != 0)//this check that the board we are cheking hasnt already won
+                    {
+                        if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0)))
+                        {
+                            score += moveToWinBoard;
+                            canWin = true;
+                        }
+                    }
+                    mask <<= 1;
+                }
+            }
+        }
+        else
+        {
+            int boardNum = move.Row * 3 + move.Col;
+            if (isX)
+            {
+                if (CanWinInOne(game.OBoards[boardNum], game.XBoards[boardNum],new BitBoard(0)))  score += moveToWinBoard;
+            }
+            else
+            {
+                if (CanWinInOne(game.XBoards[boardNum], game.OBoards[boardNum], new BitBoard(0))) score += moveToWinBoard;
+            }
+        }
+        return score;
     }
 }
 

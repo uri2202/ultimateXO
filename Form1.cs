@@ -24,6 +24,15 @@ namespace ultimateXO
             InitializeComponent();
             InitializeBoard();
         }
+        private void Form1_paint(object sender, PaintEventArgs e)
+        {
+            Color black = Color.FromArgb(255, 0, 0, 0);
+            Pen blackPen = new Pen(black,5);
+            e.Graphics.DrawLine(blackPen, 25, 175, 825,175);
+            e.Graphics.DrawLine(blackPen, 25, 355, 825,355);
+            e.Graphics.DrawLine(blackPen, 312, 0, 312, 700);
+            e.Graphics.DrawLine(blackPen, 520, 0, 520, 700);
+        }
 
         // Initialize the Tic Tac Toe board
         private void InitializeBoard()
