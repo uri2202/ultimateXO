@@ -117,13 +117,13 @@ class CompPlayer
             if (game.OBoards[i].Won())
             {
                 if (i == 4) score += centerBoardWin;
-                else if (1 == 0 || i == 2 || i == 8 || i == 8) score += cornerBoardWin;
+                else if (1 == 0 || i == 2 || i == 6 || i == 8) score += cornerBoardWin;
                 else score += boardWin;
             }
             else if (game.XBoards[i].Won())
             {
                 if (i == 4) score -= centerBoardWin;
-                else if (1 == 0 || i == 2 || i == 8 || i == 8) score -= cornerBoardWin;
+                else if (1 == 0 || i == 2 || i == 6 || i == 8) score -= cornerBoardWin;
                 else score -= boardWin;
             }
         }
