@@ -134,16 +134,23 @@ class CompPlayer
     {
         ushort centerBit = BitBoard.moves[1, 1];//the bit that represents the center square in the board
         int score = 0;
+        ushort mask = 1;
+        ushort fullBoard = (ushort)(game.OMainBoard.Board | game.MainDrawBoard.Board | game.XMainBoard.Board);
         for (int i = 0; i < 9; i++)
         {
-            if ((game.OBoards[i].Board & centerBit) != 0)
+           if(!((mask&fullBoard)!=0))
             {
-                score += centerSquare;
+                if ((game.OBoards[i].Board & centerBit) != 0)
+                {
+                    score += centerSquare;
+                }
+                if ((game.XBoards[i].Board & centerBit) != 0)
+                {
+                    score -= centerSquare;
+                }
             }
-            if ((game.XBoards[i].Board & centerBit) != 0)
-            {
-                score -= centerSquare;
-            }
+           mask<<= 1;
+           
 
         }
         if(isX)score*= -1;
@@ -151,6 +158,9 @@ class CompPlayer
     }
     private int CenterBoardSquare(GameXO game, bool isX)
     {
+        ushort mask = 0b010000;//bit that represents the cnter board
+        ushort fullBoard = (ushort)(game.OMainBoard.Board | game.MainDrawBoard.Board | game.XMainBoard.Board);
+        if ((mask & fullBoard) != 0) return 0;
         int score = 0;
         ushort tempBoard = game.OBoards[4].Board;
         int count = BitCount(tempBoard);
@@ -204,8 +214,18 @@ class CompPlayer
         int score = 0;
         for (int i = 0; i < 9; i++)
         {
-            if (CanWinInOne(game.OBoards[i], game.XBoards[i],new BitBoard(0))) score += twoBoardInARow;
-            if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0))) score -= twoBoardInARow;
+            if (game.OBoards[i].Won())//because we dont want to win to take away point because its not a two in a row anymore
+            {
+                score += twoSquaresInARow;
+                break;//we have to use break here because if someone won we dont want to keep checking but if some got two in a row we do want to keep checking so else if wouldnt work
+            }
+            if (game.XBoards[i].Won())
+            {
+                score -= twoSquaresInARow;
+                break;
+            }
+            if (CanWinInOne(game.OBoards[i], game.XBoards[i], new BitBoard(0))) score += twoSquaresInARow;//if the player won add the point anyway
+            if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0))) score -= twoSquaresInARow;
         }
         if (isX) score *= -1;
         return score;
