@@ -138,7 +138,7 @@ class CompPlayer
         ushort fullBoard = (ushort)(game.OMainBoard.Board | game.MainDrawBoard.Board | game.XMainBoard.Board);
         for (int i = 0; i < 9; i++)
         {
-           if(!((mask&fullBoard)!=0))
+           if((mask&fullBoard)==0)
             {
                 if ((game.OBoards[i].Board & centerBit) != 0)
                 {
