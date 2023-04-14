@@ -217,12 +217,12 @@ class CompPlayer
             if (game.OBoards[i].Won())//because we dont want to win to take away point because its not a two in a row anymore
             {
                 score += twoSquaresInARow;
-                break;//we have to use break here because if someone won we dont want to keep checking but if some got two in a row we do want to keep checking so else if wouldnt work
+               continue;//we have to use continue here because if someone won we dont want to keep checking but if some got two in a row we do want to keep checking so else if wouldnt work
             }
             if (game.XBoards[i].Won())
             {
                 score -= twoSquaresInARow;
-                break;
+                continue;
             }
             if (CanWinInOne(game.OBoards[i], game.XBoards[i], new BitBoard(0))) score += twoSquaresInARow;//if the player won add the point anyway
             if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0))) score -= twoSquaresInARow;
