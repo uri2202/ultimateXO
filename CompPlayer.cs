@@ -242,7 +242,7 @@ class CompPlayer
         int score = 0;
         ushort mask = 1;
         bool canWin = false;
-        if (MoveToAnyBoard(game, move) == anyBoardMove)//if the player can play in any board he wants we need to check all of them
+        if (MoveToAnyBoard(game, move) !=0)//if the player can play in any board he wants we need to check all of them
         {
             if (isX)
             {
