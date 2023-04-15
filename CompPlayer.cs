@@ -248,7 +248,7 @@ class CompPlayer
             {
                 for (int i = 0; i < 9&&!canWin; i++)
                 {
-                    if ((mask & fullBoard) != 0)//this check that the board we are cheking hasnt already won
+                    if ((mask & fullBoard) == 0)//this check that the board we are cheking hasnt already won
                     {
                         if (CanWinInOne(game.OBoards[i], game.XBoards[i],new BitBoard(0)))
                         {
@@ -264,7 +264,7 @@ class CompPlayer
             {
                 for (int i = 0; i < 9 && !canWin; i++)
                 {
-                    if ((mask & fullBoard) == 0)//this check that the board we are cheking hasnt already won
+                    if ((mask & fullBoard) == 0)//this check that the board we are cheking hasnt already won/drawn
                     {
                         if (CanWinInOne(game.XBoards[i], game.OBoards[i], new BitBoard(0)))
                         {
