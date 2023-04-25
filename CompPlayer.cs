@@ -87,6 +87,7 @@ class CompPlayer
                 tempGame.OMainBoard.MakeMoveInd(move.Board);
             }
         }
+        //for any funtion that goes over al boards do it here
         finalScore += GameWon(tempGame, isX);
         finalScore += BoardWon(tempGame, isX);
         finalScore += CenterSquare(tempGame, isX);
@@ -110,7 +111,7 @@ class CompPlayer
         
     }
     private int BoardWon(GameXO game,bool isX)//heurstic that gives score based on small board wins
-    {
+    {//di this wuth bitdoards
         int score = 0;
         for (int i = 0; i < 9; i++)
         {
