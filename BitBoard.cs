@@ -58,6 +58,10 @@ public class BitBoard : ICloneable
         clone.board = this.board;
         return clone;
     }
+    /// <summary>
+    /// checks all of the winnig patterns on the bitboard
+    /// </summary>
+    /// <returns>wether this bitboard won</returns>
     public bool Won()
     {
         for (int i = 0; i < wins.Length; i++)
@@ -69,15 +73,18 @@ public class BitBoard : ICloneable
         }
         return false;
     }
-    //public ushort GetBoard()
-    //{
-    //    return board;
-    //}
+    
     public ushort Board
     {
         get { return board; }
         set { board = value; }
     }
+    /// <summary>
+    /// checks if a move was made on this bitboard
+    /// </summary>
+    /// <param name="row"> row of the move we want to check</param>
+    /// <param name="col"> column of the move we want to check</param>
+    /// <returns>true if that bit is '1' otherwise false</returns>
     public bool WasMoveMade(int row,int col)
     {
         int squareNum = row * 3 + col;
@@ -89,6 +96,11 @@ public class BitBoard : ICloneable
         }
         return false;
     }
+    /// <summary>
+    /// checks if a move was made on this bitboard
+    /// </summary>
+    /// <param name="squareNum"> the index of the bit we want to check</param>
+    /// <returns>true if that bit is '1' otherwise false</returns>
     public bool WasMoveMadeInd(int squareNum)
     {
        

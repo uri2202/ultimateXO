@@ -15,9 +15,14 @@ public class GameXO : ICloneable
     private BitBoard[] oBoards = { new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard(), new BitBoard() };
     private static ushort fullBoard = 0b0111111111;
     private BitBoard mainDrawBoard = new BitBoard();//we need a board to keep track of the draws so we can detect a tie, the bits that are on are small bords that ended on a tie
-    
 
-    public int CheckWin(int boardNum,bool isX)//returns 0 - nothing 1 - win 2 - draw, input: which board to check
+    /// <summary>
+    /// checks if a specific board has won or drawn
+    /// </summary>
+    /// <param name="boardNum">-1 if we want to check the main boards otherwise index </param>
+    /// <param name="isX"> which player we want to check X or O</param>
+    /// <returns> 0 - nothing 1 - win 2 - draw</returns>
+    public int CheckWin(int boardNum,bool isX)
     {
         
         
@@ -65,6 +70,14 @@ public class GameXO : ICloneable
 
         return clone;
     }
+    /// <summary>
+    /// saves the move and checks if it was legal
+    /// </summary>
+    /// <param name="boardNum">-1 if we want to make the move on the main boards otherwise index</param>
+    /// <param name="row">row of the move</param>
+    /// <param name="col">column if the move</param>
+    /// <param name="isX">which player makes the move</param>
+    /// <returns>true if the move was made and legel, false otherwise</returns>
     public bool MakeMove(int boardNum, int row,int col,bool isX)//returns true if the move was made and legel, false otherwise
     {
         if (boardNum == -2)
