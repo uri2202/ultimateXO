@@ -64,14 +64,15 @@ public class BitBoard : ICloneable
     /// <returns>wether this bitboard won</returns>
     public bool Won()
     {
-        for (int i = 0; i < wins.Length; i++)
+        bool didWin = false;
+        for (int i = 0; i < wins.Length&&!didWin; i++)
         {
             if ((ushort)(board & wins[i]) == wins[i])
             {
-                return true;
+                didWin =  true;
             }
         }
-        return false;
+        return didWin;
     }
     
     public ushort Board
