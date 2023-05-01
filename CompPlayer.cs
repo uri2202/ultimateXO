@@ -254,7 +254,7 @@ class CompPlayer
     }
     //O(n)
     /// <summary>
-    /// function the amount of '1' bits on a binary number
+    /// function that finds the amount of '1' bits on a binary number
     /// </summary>
     /// <param name="num"> the number we want to check</param>
     /// <returns>the total amount</returns>

@@ -21,7 +21,7 @@
       <HashCode>AAAAAAAAAAAAABAAAAAAAAQJBABECwCAQAAAgAAAABA=</HashCode>
       <FileName>GameXO.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.161" Collapsed="true" />
   </Class>
   <Class Name="Move" BaseTypeListCollapsed="true">
     <Position X="12.25" Y="6.25" Width="1.5" />
