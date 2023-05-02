@@ -29,13 +29,13 @@ class CompPlayer
 
     }
     /// <summary>
-    /// this fuction finds each legel move and uses the uvaluate function on each move to find the best one.
+    /// this fuction finds each legel move and uses the evaluate function on each move to find the best one.
     ///  O(n^4)
     /// </summary>
     /// <param name="game"> the state of the boards</param>
     /// <param name="move"> the move that was just made by the enemy</param>
     /// <returns>the  move with the highest score</returns>
-    public Move MakeMove(GameXO game, Move move)// the ai is always the O player, game is the current game situation, move is the move that was just made by the real player
+    public Move MakeMove(GameXO game, Move move)
     {
         Move finalMove = new Move();
         finalMove.Score = -100000;
@@ -177,15 +177,15 @@ class CompPlayer
     private int BoardWon(GameXO game,bool isX, int index)
     {
         int score = 0;
-       // for (int i = 0; i < 9; i++)
+       
         
-            if(game.OMainBoard.WasMoveMadeInd(index))//if (game.OBoards[i].Won())
+            if(game.OMainBoard.WasMoveMadeInd(index))
             {
                 if (index == 4) score += centerBoardWin;
                 else if (index == 0 || index == 2 || index == 6 || index == 8) score += cornerBoardWin;
                 else score += boardWin;
             }
-            else if (game.XMainBoard.WasMoveMadeInd(index))//(game.XBoards[i].Won())
+            else if (game.XMainBoard.WasMoveMadeInd(index))
                 {
                 if (index == 4) score -= centerBoardWin;
                 else if (index == 0 || index == 2 || index == 6 || index == 8) score -= cornerBoardWin;
@@ -228,7 +228,7 @@ class CompPlayer
         if(isX) score = -score;
         return score;
     }
-    //O(1)
+    //O(n)
     /// <summary>
     /// heurstic that gives score based on center board squares captured
     /// </summary>
@@ -237,7 +237,7 @@ class CompPlayer
     /// <returns>the score of this specific heuristic</returns>
     private int CenterBoardSquare(GameXO game, bool isX)
     {
-        ushort mask = 0b010000;//bit that represents the cnter board
+        ushort mask = 0b010000;//bit that represents the center board
         ushort fullBoard = (ushort)(game.OMainBoard.Board | game.MainDrawBoard.Board | game.XMainBoard.Board);
         if ((mask & fullBoard) != 0) return 0;
         int score = 0;
@@ -276,7 +276,7 @@ class CompPlayer
     /// <param name="secondBoard"> the enemy of that board</param>
     /// <param name="drawBoard"> in case we are checking the main board we have to acount of the draw bitboard</param>
     /// <returns></returns>
-    private bool CanWinInOne(BitBoard winBoard,BitBoard secondBoard,BitBoard drawBoard)//winBoard is the board that we want to check if it can win in 1 move and the secondBoard is the second one, both of then could be x or o
+    private bool CanWinInOne(BitBoard winBoard,BitBoard secondBoard,BitBoard drawBoard)
     {
         bool canWin = false;
         for (int i = 0; i < BitBoard.wins.Length&&!canWin; i++)
@@ -300,7 +300,7 @@ class CompPlayer
     /// <param name="game"> state of the boards</param>
     /// <param name="isX"> is the computer player playing as X or O</param>
     /// <returns>the score of this specific heuristic</returns>
-    private int BoardsInARow(GameXO game, bool isX)//this heuristic is for two boards wins that are in a row/column/diaginal that can lead to a game win
+    private int BoardsInARow(GameXO game, bool isX)
     {
         int score = 0;
         if (CanWinInOne(game.OMainBoard, game.XMainBoard,game.MainDrawBoard)) score += twoBoardInARow;
@@ -318,9 +318,9 @@ class CompPlayer
     private int SquaresInARow(GameXO game, bool isX,int index)
     {
         int score = 0;
-        //for (int i = 0; i < 9; i++)
+      
         
-            if (game.OMainBoard.WasMoveMadeInd(index))// (game.OBoards[i].Won())//because we dont want to win to take away point because its not a two in a row anymore
+            if (game.OMainBoard.WasMoveMadeInd(index))// because we dont want a in to take away point because its not a two in a row anymore
             {
                 score += twoSquaresInARow;
                
@@ -343,7 +343,7 @@ class CompPlayer
     /// <param name="game"> state of the boards</param>
     /// <param name="move"> the move in question</param>
     /// <returns>the score of this specific heuristic </returns>
-    private int MoveToAnyBoard(GameXO game, Move move)//heuristc that checks if the move sent the enemy to play in any board
+    private int MoveToAnyBoard(GameXO game, Move move)
     {
         ushort fullBoard = (ushort)(game.OMainBoard.Board|game.MainDrawBoard.Board|game.XMainBoard.Board);
         if ((BitBoard.moves[move.Row, move.Col] & fullBoard) != 0) return anyBoardMove;

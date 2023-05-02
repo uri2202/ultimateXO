@@ -127,6 +127,14 @@ namespace ultimateXO
 
 
         }
+        /// <summary>
+        /// this funtion saves the turn and makes sure its shown on the screen
+        /// </summary>
+        /// <param name="button">the button that was clicked</param>
+        /// <param name="panel"> the panel of the button</param>
+        /// <param name="panelNum">panel number of the button</param>
+        /// <param name="row">row of the turn</param>
+        /// <param name="col">column of the turn</param>
         public void initializeTurn(Button button,TableLayoutPanel panel, int panelNum, int row, int col)
         {
             
@@ -170,10 +178,15 @@ namespace ultimateXO
             ai.Enabled = false;
 
         }
-        public void DisableBoards(int row,int col) //this function disables the buttons based on the move that was made
+        /// <summary>
+        /// this function disables the correct boards according to the move that was just made
+        /// </summary>
+        /// <param name="row">row of the move</param>
+        /// <param name="col">column of the move</param>
+        public void DisableBoards(int row,int col) 
         {
             int panelNum = row*BoardSize + col;//this gets me the correct index in the array of panels
-            if(game.CheckWin(panelNum,true)==1|| game.CheckWin(panelNum, false) == 1|| game.CheckWin(panelNum, true) == 2 || game.CheckWin(panelNum, false) == 2)
+            if(game.CheckWin(panelNum,true)==1|| game.CheckWin(panelNum, false) == 1|| game.CheckWin(panelNum, true) == 2 || game.CheckWin(panelNum, false) == 2)// if the move sent to a won baord the player can play in any bord they want
             {
                 for (int bNum = 0; bNum < numOfBoards; bNum++)
                 {
