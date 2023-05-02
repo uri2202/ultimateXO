@@ -78,7 +78,7 @@ public class GameXO : ICloneable
     /// <param name="col">column if the move</param>
     /// <param name="isX">which player makes the move</param>
     /// <returns>true if the move was made and legel, false otherwise</returns>
-    public bool MakeMove(int boardNum, int row,int col,bool isX)//returns true if the move was made and legel, false otherwise
+    public bool MakeMove(int boardNum, int row,int col,bool isX)
     {
         if (boardNum == -2)
         {
