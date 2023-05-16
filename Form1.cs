@@ -155,19 +155,23 @@ namespace ultimateXO
             {
 
                 game.MakeMove(-1, tempRow, tempCol, xTurn);
-                if (game.CheckWin(-1, xTurn) == 1)
+                if (game.CheckWin(-1, xTurn) == 1)//if the entire game is a win
                 {
                     EndGame(true);
                 }
-                else if (game.CheckWin(-1, xTurn) == 2)
+                else if (game.CheckWin(-1, xTurn) == 2)//if the entire game is a draw
                 {
                     EndGame(false);
                 }
                 BoardWon(panelNum, true);
             }
-            else if (game.CheckWin(panelNum, xTurn) == 2)
+            else if (game.CheckWin(panelNum, xTurn) == 2)//if draw
             {
                 game.MakeMove(-2, tempRow, tempCol, xTurn);
+                if (game.CheckWin(-1, xTurn) == 2)//if the entire game is a draw
+                {
+                    EndGame(false);
+                }
                 BoardWon(panelNum, false);
             }
             DisableBoards(row, col);
